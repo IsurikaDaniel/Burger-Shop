@@ -3,6 +3,10 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+.mainBGcol{
+
+  background-color: rgb(17, 43, 34);
+}
 
 .logHead{
     text-align: center;
