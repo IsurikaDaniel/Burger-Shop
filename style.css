@@ -3,17 +3,23 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+/*Main theam color*/
 .mainBGcol{
 
   background-color: rgb(17, 43, 34);
+  text-align: center;
 }
 
+/*All Heading styles (logHead)*/
 .logHead{
     text-align: center;
     color: aliceblue;
     margin-bottom: 20px;
     font-size: 100px;
 }
+
+/*Login pg styles*/
 .login{
 
     padding: center;
@@ -99,5 +105,28 @@
     opacity: 0;
    }
   
-  
+   /*All text styles (Text)*/
+  .Text{
+    color: #ffffff;
+    font-size: larger;
+    
+  }
 
+  /*Place order pg styles*/
+  .inputPlOr {
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding: 1em;
+    background-color: #ccc;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    transition: 300ms ease-in-out;
+  }
+  
+  .input:focus {
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: 13px 13px 100px #969696,
+               -13px -13px 100px #ffffff;
+  }
