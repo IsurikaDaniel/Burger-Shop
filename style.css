@@ -135,6 +135,11 @@
     width: 300px;
     align-items: end;
   }
+
+  .placeOr2{
+    height: 300px;
+    width: 300px;
+  }
   /*Other btn styles*/
   .btnAll {
     position: relative;
