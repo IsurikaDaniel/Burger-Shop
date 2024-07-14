@@ -140,6 +140,10 @@
     height: 300px;
     width: 300px;
   }
+  .billl{
+    height: 90%;
+    width: 80%;
+  }
   /*Other btn styles*/
   .btnAll {
     position: relative;
