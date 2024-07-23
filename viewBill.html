@@ -19,6 +19,61 @@
   <img src="img/billl.jpeg" alt="" class="billl">
 </div>
 
+<div class="container">
+  <h2>Customer and Customer's order</h2>
+  <form>
+      <div class="form-group">
+          <label class="lbl" for="customer-name">Customer Name & ID :</label>
+          <input type="text" id="customer-name" name="customer-name">
+          <input type="text" id="customer-id" name="customer-id">
+      </div>
+      <div class="form-group">
+          <label for="amount-paid">Amount Paid :</label>
+          <input type="text" id="amount-paid" name="amount-paid">
+      </div>
+  </form>
+
+  <div class="order-details">
+      <div class="table-header">
+          <span>ITEM CODE</span>
+          <span>QUANTITY</span>
+          <span>PRICE</span>
+          <span>DISCOUNT</span>
+      </div>
+      <div class="table-row">
+          <input type="text" value="B1031">
+          <input type="text" value="02">
+          <input type="text" value="1600.00">
+          <input type="text" value="15%">
+      </div>
+      <div class="table-row">
+          <input type="text" value="B1027">
+          <input type="text" value="03">
+          <input type="text" value="800.00">
+          <input type="text" value="-">
+      </div>
+      <div class="table-row">
+          <input type="text" value="B1022">
+          <input type="text" value="05">
+          <input type="text" value="1500.00">
+          <input type="text" value="15%">
+      </div>
+      <div class="table-row">
+          <input type="text" value="B1045">
+          <input type="text" value="06">
+          <input type="text" value="890.00">
+          <input type="text" value="7%">
+      </div>
+      <div class="total-amount">
+          <label for="total-amount">Total Amount :</label>
+          <input type="text" id="total-amount" name="total-amount">
+      </div>
+  </div>
+  <div class="buttons">
+      <button type="button">Edit Details*</button>
+      <button type="button">Main page</button>
+  </div>
+</div>
 
     <script src="app.js"></script>
 
