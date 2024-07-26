@@ -18,17 +18,24 @@
     margin-bottom: 20px;
     font-size: 100px;
 }
+/* All letters styles (allLetters) */
+.allLetters{
+  text-align: center;
+  color: aliceblue;
+  margin-bottom: 20px;
+  /* font-size: 100px; */
+}
 /*ViewBill pg style*/
 
 
 .trans {
-  background-color: #111;
+  background-color: #080808;
+  margin-top: 20px;
   /* align-items: center; */
   justify-items: center;
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 500px;
 }
 
 
@@ -158,7 +165,7 @@
   }
   .billl{
     height: 90%;
-    width: 80%;
+    width: 100%;
   }
   /*Other btn styles*/
   .btnAll {
