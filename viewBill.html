@@ -22,17 +22,26 @@
 <div class="container trans">
   <h2 class="allLetters">Customer and Customer's order</h2>
   <form>
-      <div class="form-group">
+      <div class="form-group col-12 md-5">
           <label class="allLetters" for="customer-name">Customer Name & ID :</label>
-          <input class="input" type="text" id="customer-name" name="customer-name">
-          <input class="input" type="text" id="customer-id" name="customer-id">
+          <input class="inputBill" type="text" id="customer-name" name="customer-name">
+          <input class="inputBill" type="text" id="customer-id" name="customer-id">
       </div>
       <div class="form-group">
           <label class="allLetters" for="amount-paid">Amount Paid :</label>
-          <input class="input" type="text" id="amount-paid" name="amount-paid">
+          <input class="inputBill" type="text" id="amount-paid" name="amount-paid">
       </div>
   </form>
 
+  <div class="row container-flued">
+    <div class="col-12 m-5">
+        <button class="btnBill col-3 md-5">ITEM CODE</button>
+        <button class="btnBill col-3 md-5">QUANTITY</button>
+        <button class="btnBill col-3 md-5">PRICE</button>
+        <button class="btnBill col-3 md-5">DISCOUNT</button>
+    </div>
+  </div>
+  
   <!-- <div class="order-details">
       <div class="table-header">
           <span>ITEM CODE</span>
