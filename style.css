@@ -117,6 +117,8 @@
   
    /*All text styles (Text)*/
   .Text{
+    /* margin-top: 20px; */
+    /* text-align: left; */
     color: #ffffff;
     font-size: larger;
     
@@ -152,7 +154,12 @@
   }
 /*------------------------------------------------------------------------------------------------*/
 /*ViewBill pg style*/
-
+.billText{
+    padding-top: 10px;
+    text-align: left;
+    color: #ffffff;
+    font-size: larger;
+}
 .trans {
   background-color: #080808;
   margin-top: 20px;
@@ -234,12 +241,52 @@
   .btnBill:hover::before {
     width: 100%;
   }
-  .row {
+
+  .btnList {
+    margin-top: 50px;
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: rgb(170, 161, 161) 0px 4px 0px 0px;
+    padding: 15px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 154px;
+    height: 49px;
+    color: #000000;
+    border: none;
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  .btnList::before {
+    content: "";
+    border-radius: 5px;
+    /* margin: 0 5px; */
+    background-color: rgb(173, 173, 173);
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: width 700ms ease-in-out;
+    display: inline-block;
+  }
+  
+  .btnList:hover::before {
+    width: 100%;
+  }
+
+  /* .row {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* Padding around the buttons */
-}
+    padding: 20px;  
+}*/
   /*------------------------------------------------------------------------------------------------*/
   /*Other btn styles*/
   .btnAll {
