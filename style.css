@@ -339,8 +339,36 @@
    }
    /*------------------------------------------------------------------------------------------------*/
    /* Veiw Order pg style  */
+   .mainBGcolOR{
+    background-color: rgb(17, 43, 34);
+   }
 
    .viewOrderImg{
     height:700px;
     width: 100%;
    }
+   .order {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    color: #b6b1b1;
+}
+
+.order-card {
+    background-color: #1b3a30;
+    border: 1px solid #587a6a;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+}
+
+.order-id, .phone-number, .total {
+    font-weight: bold;
+    color: #fffcfc;
+}
+
+.order-card hr {
+    border: 0;
+    border-top: 1px solid #2a5440;
+    margin: 10px 0;
+}
