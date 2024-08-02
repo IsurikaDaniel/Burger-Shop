@@ -67,7 +67,7 @@
   
   .btn {
     position: relative;
-    /* align-items: center; */
+    align-items: center;
     margin-top: 10px;
     font-size: 17px;
     text-transform: uppercase;
