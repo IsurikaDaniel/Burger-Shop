@@ -341,6 +341,7 @@
    /* Veiw Order pg style  */
    .mainBGcolOR{
     background-color: rgb(17, 43, 34);
+    text-align: center;
    }
 
    .viewOrderImg{
@@ -360,7 +361,8 @@
     border: 1px solid #587a6a;
     border-radius: 8px;
     padding: 20px;
-    width: 300px;
+    text-align: left;
+    /* width: 200px; */
 }
 
 .order-id, .phone-number, .total {
