@@ -1,28 +1,14 @@
-// function login() {
-//     const employeeId = document.getElementById('employee-id').value;
-//     const password = document.getElementById('password').value;
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting
 
-//     // Add your login logic here. This could involve an API call to your server.
-//     // Example using fetch:
-//     fetch('https://your-backend-url/login', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ employeeId, password }),
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         if (data.success) {
-//             // Handle successful login, e.g., redirect to a dashboard
-//             window.location.href = 'dashboard.html';
-//         } else {
-//             // Handle login failure, e.g., show an error message
-//             alert('Invalid login credentials.');
-//         }
-//     })
-//     .catch((error) => {
-//         console.error('Error:', error);
-//         alert('An error occurred during login. Please try again later.');
-//     });
-// }
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Simple validation (Replace this with your actual authentication logic)
+    if (username === 'admin' && password === 'password123') {
+        // Redirect to another page after successful login
+        window.location.href = 'mainPage.html';
+    } else {
+        alert('Invalid username or password');
+    }
+});
