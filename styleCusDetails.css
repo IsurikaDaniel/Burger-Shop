@@ -1,0 +1,192 @@
+/* body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #2c3e50;
+    color: white;
+} */
+.mainBGcol{
+
+    background-color: rgb(17, 43, 34);
+    text-align: center;
+  }
+
+  .logHead{
+    text-align: center;
+    color: aliceblue;
+    margin-bottom: 20px;
+    font-size: 100px;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content {
+    background-color: rgb(17, 43, 34);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+    /* max-width: 800px; */
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ecf0f1;
+}
+
+.form-container {
+    display: flex;
+}
+
+.image-container {
+    flex: 1;
+    padding: 10px;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.form {
+    flex: 1;
+    padding: 10px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* .form input[type="text"],
+.form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #c6cace;
+    color: white;
+} */
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.payment-method label {
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+.payment-method input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+}
+
+.buttons button:hover {
+    background-color: #c0392b;
+} */
+
+.btn {
+    position: relative;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 17px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1em 2.5em;
+    display: inline-block;
+    border-radius: 6em;
+    transition: all .2s;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    color: rgb(255, 248, 248);
+    background-color: rgb(122, 7, 7);
+   }
+   
+   .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+   }
+   
+   .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   .btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+   }
+   
+   .btn::after {
+    background-color: #aca3a3;
+   }
+   
+   .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+   }
+  .cusDatils{
+    width: 100%;
+    height: 80%;
+  }
+  .input {
+  
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    color: #fffdfd;
+    padding: 15px 5px 10px 20px;
+    box-shadow: inset 4px 4px 4px rgba(245, 245, 245, 0.945),4px 4px 4px rgba(255, 255, 255, 0.801);
+    border-radius: 20px;
+    background-clip: padding-box;
+  }
+  
+  .input:focus {
+    padding-bottom: 20px;
+  }
+  
+  
+  .input::placeholder {
+    color: #fffcfc;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
