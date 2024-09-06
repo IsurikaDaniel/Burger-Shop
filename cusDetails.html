@@ -1,96 +1,93 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
-
-    <title>Dani's Burger</title>
-    <link rel="stylesheet" href="styleCusDetails.css">
-
-  </head>
-  <body class="mainBGcol">
-    
-    <!-- <div class="container">
-        <h1 class="logHead"><b>Customer Details</b></h1>
-    </div>
-
-    <div class="row">
-      <div>
-        <img src="img/cusDatils.jpeg" alt=""  class="cusDatils">
-      </div>
-      <div class="col transOrder">
-        <h3>jjjjjjjjjjj</h3>jj
-      </div>
-    </div> -->
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Details</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+
+  <title>Document</title>
+  <link rel="stylesheet" href="styleCusDetails.css">
+
 </head>
-<body>
+<body class="mainBGcol">
   
-    <h1 class="logHead"><b>Customer Details</b></h1>
+  
+  <h1 class="logHead mb-5"><b>Customer Details</b></h1>
 
-    <div class="container">
-            <div class="form-container">
-                <div class="image-container">
-                    <img src="img/cusDatils.jpeg" alt="Burger Image" class="cusDatils">
-                </div>
-                <div class="form ">
-                    <label for="customerId">Customer Id</label>
-                    <input type="text" autocomplete="off" name="customerId" class="input" placeholder="Type here..." id="customerId">
-
-
-                    <label for="firstName">First Name</label> 
-                    <input type="text" id="firstName" name="firstName">
-
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" name="lastName">
-
-                    <label for="phoneNumber">Phone Number</label>
-                    <input type="text" id="phoneNumber" name="phoneNumber">
-
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address">
-
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
-
-                    <label for="paymentMethod">Payment Method</label>
-                    <div class="payment-method">
-                        <input type="radio" id="cash" name="paymentMethod" value="cash">
-                        <label for="cash">Cash</label>
-                        <input type="radio" id="card" name="paymentMethod" value="card">
-                        <label for="card">Card</label>
-                    </div>
-                </div>
-            </div>
-          
-        </div>
-    </div>
-
-    <div class="row container-fluid">
+  <div class="container">
+    <div class="row">
       <div class="col">
-        <button onclick="MainPg()" class="btn col-6 mt-5"><b>Add Customer</b></button>   
-        <button onclick="Edit()" class="btn col-6 mt-5"><b>Main Page</b></button>   
+        <div class="form-container">
+          <div class="image-container">
+            <img src="img/cusDatils.jpeg" alt="Burger Image" class="cusDatils">
+          </div>
+  
+          <!-- Single Row for Form Elements -->
+          <div class="form">
+            <!-- Customer ID -->
+            <div class="form-group mt-3">
+              <label for="customerId" class="text">Customer Id</label>
+              <input type="text" autocomplete="off" name="customerId" class="input" placeholder="Type here..." id="customerId">
+            </div>
+            <!-- First Name -->
+            <div class="form-group mt-3">
+              <label for="firstName" class="text">First Name</label>
+              <input type="text" autocomplete="off" name="Fname" class="input" placeholder="Type here..." id="firstName">
+            </div>
+            <!-- Last Name -->
+            <div class="form-group mt-3">
+              <label for="lastName" class="text">Last Name</label>
+              <input type="text" autocomplete="off" name="Lname" class="input" placeholder="Type here..." id="lastName">
+            </div>
+            <!-- Phone Number -->
+            <div class="form-group mt-3">
+              <label for="phoneNumber" class="text">Phone Number</label>
+              <input type="text" autocomplete="off" name="num" class="input" placeholder="Type here..." id="phoneNumber">
+            </div>
+            <!-- Address -->
+            <div class="form-group mt-3">
+              <label for="address" class="text">Address</label>
+              <input type="text" autocomplete="off" name="address" class="input" placeholder="Type here..." id="address">
+            </div>
+            <!-- Email -->
+            <div class="form-group mt-3">
+              <label for="email" class="text">Email</label>
+              <input type="text" autocomplete="off" name="email" class="input" placeholder="Type here..." id="email">
+            </div>
+            <!-- Payment Method -->
+            <div class="form-group mt-3">
+              <label for="paymentMethod" class="text">Payment Method</label>
+              <div class="payment-method">
+                <input type="radio" id="cash" name="paymentMethod" value="cash">
+                <label for="cash" class="text">Cash</label>
+                <input type="radio" id="card" name="paymentMethod" value="card">
+                <label for="card" class="text">Card</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
+  </div>
+  
+  <!-- Buttons Section -->
+  <div class="row container-fluid">
+    <div class="col">
+      <button onclick="AddCus()" class="btn col-6 mt-5"><b>Add Customer</b></button>
+      <button onclick="Edit()" class="btn col-6 mt-5"><b>Main Page</b></button>
+    </div>
+  </div>
+  
+  
 </body>
 </html>
 
 
 
-    <script src="app.js"></script>
+  <script src="app.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
