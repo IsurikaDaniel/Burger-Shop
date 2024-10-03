@@ -51,3 +51,107 @@ function clearForm() {
     const paymentRadios = document.getElementsByName("paymentMethod");
     paymentRadios.forEach(radio => radio.checked = false);
 }
+
+
+// Function to add items to the menu
+let isUpdating = false;
+let currentItemId = null;
+
+// Function to add items or update them
+function ItemsAdd() {
+    const formContainer = document.createElement('div');
+    formContainer.classList.add('form-overlay');
+
+    const form = document.createElement('form');
+    form.classList.add('form-modal');
+    form.innerHTML = `
+        <h2>${isUpdating ? 'Update Item' : 'Add New Item'}</h2>
+        <div class="mb-3">
+            <label for="itemName" class="form-label">Item Name</label>
+            <input type="text" class="form-control" id="itemName" required>
+        </div>
+        <div class="mb-3">
+            <label for="itemPrice" class="form-label">Price</label>
+            <input type="number" class="form-control" id="itemPrice" required>
+        </div>
+        <div class="mb-3">
+            <label for="itemImage" class="form-label">Image URL</label>
+            <input type="text" class="form-control" id="itemImage" required>
+        </div>
+        <button type="submit" class="btn btn-primary">${isUpdating ? 'Update Item' : 'Add Item'}</button>
+        <button type="button" class="btn btn-secondary" onclick="closeForm()">Cancel</button>
+    `;
+
+    formContainer.appendChild(form);
+    document.body.appendChild(formContainer);
+
+    form.onsubmit = function(event) {
+        event.preventDefault(); 
+
+        const itemName = document.getElementById('itemName').value;
+        const itemPrice = document.getElementById('itemPrice').value;
+        const itemImage = document.getElementById('itemImage').value;
+
+        if (isUpdating) {
+            // Update the existing item
+            const itemCard = document.querySelector(`[data-id="${currentItemId}"]`);
+            itemCard.querySelector('.card-title').innerHTML = currentItemId + " <br> " + itemName;
+            itemCard.querySelector('.card-text').innerHTML = `Price: Rs.${itemPrice}.00`;
+            itemCard.querySelector('img').src = itemImage;
+        } else {
+            // Add new item
+            const newItemCard = `
+                <div class="col-md-6">
+                    <div class="card mb-3" style="max-width: 540px;" data-id="${Date.now()}" onclick="editItem('${Date.now()}')">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="${itemImage}" class="img-fluid rounded-start menuImg" alt="${itemName}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">${itemName}</h5>
+                                    <p class="card-text">Price: Rs.${itemPrice}.00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const itemsContainer = document.getElementById('itemsContainer');
+            itemsContainer.insertAdjacentHTML('beforeend', newItemCard);
+        }
+
+        form.reset();
+        closeForm();
+    };
+}
+
+// Function to open form in edit mode
+function editItem(itemId) {
+    isUpdating = true;
+    currentItemId = itemId;
+
+    // Find the card and pre-fill the form with its data
+    const itemCard = document.querySelector(`[data-id="${itemId}"]`);
+    const itemName = itemCard.querySelector('.card-title').textContent.split(" ")[1];
+    const itemPrice = itemCard.querySelector('.card-text').textContent.split("Rs.")[1].split(".")[0];
+    const itemImage = itemCard.querySelector('img').src;
+
+    // Open the form with pre-filled data
+    ItemsAdd();
+
+    document.getElementById('itemName').value = itemName;
+    document.getElementById('itemPrice').value = itemPrice;
+    document.getElementById('itemImage').value = itemImage;
+}
+
+// Function to close the form and overlay
+function closeForm() {
+    const formOverlay = document.querySelector('.form-overlay');
+    if (formOverlay) {
+        document.body.removeChild(formOverlay);
+    }
+    isUpdating = false;
+    currentItemId = null;
+}
+
