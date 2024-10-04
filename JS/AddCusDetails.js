@@ -155,3 +155,58 @@ function closeForm() {
     currentItemId = null;
 }
 
+
+
+// Sample menu items for demonstration
+const menuItems = [
+    { code: '101', name: 'Cheeseburger', price: 5.99 },
+    { code: '102', name: 'Veggie Burger', price: 4.99 },
+    { code: '103', name: 'Chicken Sandwich', price: 6.99 },
+    // Add more items as needed
+];
+
+// Function to view the menu
+function menu() {
+    let menuList = 'Menu:\n';
+    menuItems.forEach(item => {
+        menuList += `Code: ${item.code}, Name: ${item.name}, Price: $${item.price}\n`;
+    });
+    alert(menuList); // Display menu in an alert (you can modify this to display on the page)
+}
+
+// Function to add an order
+function addOrder() {
+    const customerId = document.querySelector('input[name="customerId"]').value;
+    const customerName = document.querySelector('input[name="customerName"]').value;
+    const itemCode = document.querySelector('input[name="itemCode"]').value;
+    const itemName = document.querySelector('input[name="itemName"]').value;
+    const itemQuantity = document.querySelector('input[name="itemQuantity"]').value;
+
+    // Basic validation
+    if (!customerId || !customerName || !itemCode || !itemName || !itemQuantity) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    // Find the menu item based on the item code
+    const menuItem = menuItems.find(item => item.code === itemCode);
+    if (!menuItem) {
+        alert('Invalid item code.');
+        return;
+    }
+
+    // Calculate total price
+    const totalPrice = menuItem.price * itemQuantity;
+
+    // Display order summary
+    const orderSummary = `
+        Customer ID: ${customerId}
+        Customer Name: ${customerName}
+        Item Ordered: ${itemName}
+        Quantity: ${itemQuantity}
+        Total Price: $${totalPrice.toFixed(2)}
+    `;
+    alert(orderSummary);
+
+    // Here you can add code to send the order to your backend server if needed.
+}
