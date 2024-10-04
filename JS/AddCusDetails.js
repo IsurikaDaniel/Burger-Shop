@@ -1,5 +1,6 @@
 // Initialize an array to store customers
 const customers = [];
+const orders = [];
 
 function AddCus() {
     // Get the values from the form inputs
@@ -53,11 +54,14 @@ function clearForm() {
 }
 
 
-// Function to add items to the menu
 let isUpdating = false;
 let currentItemId = null;
 
-// Function to add items or update them
+// Initialize an empty array to store menu items
+let menuItems = [];
+
+
+
 function ItemsAdd() {
     const formContainer = document.createElement('div');
     formContainer.classList.add('form-overlay');
@@ -85,6 +89,7 @@ function ItemsAdd() {
     formContainer.appendChild(form);
     document.body.appendChild(formContainer);
 
+    // Handle form submission
     form.onsubmit = function(event) {
         event.preventDefault(); 
 
@@ -94,23 +99,41 @@ function ItemsAdd() {
 
         if (isUpdating) {
             // Update the existing item
-            const itemCard = document.querySelector(`[data-id="${currentItemId}"]`);
-            itemCard.querySelector('.card-title').innerHTML = currentItemId + " <br> " + itemName;
-            itemCard.querySelector('.card-text').innerHTML = `Price: Rs.${itemPrice}.00`;
-            itemCard.querySelector('img').src = itemImage;
+            const itemIndex = menuItems.findIndex(item => item.id === currentItemId);
+            if (itemIndex > -1) {
+                menuItems[itemIndex].name = itemName;
+                menuItems[itemIndex].price = itemPrice;
+                menuItems[itemIndex].image = itemImage;
+
+                // Update the item in the DOM
+                const itemCard = document.querySelector(`[data-id="${currentItemId}"]`);
+                itemCard.querySelector('.card-title').innerHTML = `${menuItems[itemIndex].name}`;
+                itemCard.querySelector('.card-text').innerHTML = `Price: Rs.${menuItems[itemIndex].price}.00`;
+                itemCard.querySelector('img').src = menuItems[itemIndex].image;
+            }
         } else {
             // Add new item
-            const newItemCard = `
+            const newItem = {
+                id: Date.now(), // Unique ID
+                name: itemName,
+                price: itemPrice,
+                image: itemImage
+            };
+
+            menuItems.push(newItem);
+
+            // Add new item to the DOM
+            const newItemHTML = `
                 <div class="col-md-6">
-                    <div class="card mb-3" style="max-width: 540px;" data-id="${Date.now()}" onclick="editItem('${Date.now()}')">
+                    <div class="card mb-3" style="max-width: 540px;" data-id="${newItem.id}" onclick="editItem('${newItem.id}')">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="${itemImage}" class="img-fluid rounded-start menuImg" alt="${itemName}">
+                                <img src="${newItem.image}" class="img-fluid rounded-start menuImg" alt="${newItem.name}">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">${itemName}</h5>
-                                    <p class="card-text">Price: Rs.${itemPrice}.00</p>
+                                    <h5 class="card-title">${newItem.name}</h5>
+                                    <p class="card-text">Price: Rs.${newItem.price}.00</p>
                                 </div>
                             </div>
                         </div>
@@ -118,32 +141,44 @@ function ItemsAdd() {
                 </div>
             `;
             const itemsContainer = document.getElementById('itemsContainer');
-            itemsContainer.insertAdjacentHTML('beforeend', newItemCard);
+            itemsContainer.insertAdjacentHTML('beforeend', newItemHTML);
         }
 
+        // Reset form and close
         form.reset();
         closeForm();
     };
 }
 
-// Function to open form in edit mode
+function closeForm() {
+    const formOverlay = document.querySelector('.form-overlay');
+    if (formOverlay) {
+        document.body.removeChild(formOverlay);
+    }
+    isUpdating = false;
+    currentItemId = null;
+}
+
 function editItem(itemId) {
     isUpdating = true;
-    currentItemId = itemId;
+    currentItemId = parseInt(itemId); // Ensure itemId is an integer
 
-    // Find the card and pre-fill the form with its data
-    const itemCard = document.querySelector(`[data-id="${itemId}"]`);
-    const itemName = itemCard.querySelector('.card-title').textContent.split(" ")[1];
-    const itemPrice = itemCard.querySelector('.card-text').textContent.split("Rs.")[1].split(".")[0];
-    const itemImage = itemCard.querySelector('img').src;
+    // Find the item in the array
+    const item = menuItems.find(item => item.id === currentItemId); // Match with item.id
 
-    // Open the form with pre-filled data
-    ItemsAdd();
+    if (item) {
+        // Open the form with pre-filled data
+        ItemsAdd();
 
-    document.getElementById('itemName').value = itemName;
-    document.getElementById('itemPrice').value = itemPrice;
-    document.getElementById('itemImage').value = itemImage;
+        // After form is opened, populate the fields with existing data
+        document.getElementById('itemName').value = item.name;
+        document.getElementById('itemPrice').value = item.price;
+        document.getElementById('itemImage').value = item.image;
+    } else {
+        console.error("Item not found");
+    }
 }
+
 
 // Function to close the form and overlay
 function closeForm() {
@@ -155,23 +190,14 @@ function closeForm() {
     currentItemId = null;
 }
 
-
-
-// Sample menu items for demonstration
-const menuItems = [
-    { code: '101', name: 'Cheeseburger', price: 5.99 },
-    { code: '102', name: 'Veggie Burger', price: 4.99 },
-    { code: '103', name: 'Chicken Sandwich', price: 6.99 },
-    // Add more items as needed
-];
-
-// Function to view the menu
-function menu() {
+// Function to view the menu items (Optional: You can use this for displaying in another part of the app)
+function viewMenuItems() {
+    console.log("Current menu items:", menuItems);
     let menuList = 'Menu:\n';
     menuItems.forEach(item => {
-        menuList += `Code: ${item.code}, Name: ${item.name}, Price: $${item.price}\n`;
+        menuList += `Name: ${item.name}, Price: Rs.${item.price}.00\n`;
     });
-    alert(menuList); // Display menu in an alert (you can modify this to display on the page)
+    alert(menuList);
 }
 
 // Function to add an order
