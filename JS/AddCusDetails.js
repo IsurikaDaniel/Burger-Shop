@@ -1,6 +1,7 @@
-// Initialize an array to store customers
+// Initialize arrays to store customers, orders, and menu items
 const customers = [];
 const orders = [];
+const menuItems = [];
 
 function AddCus() {
     // Get the values from the form inputs
@@ -32,13 +33,15 @@ function AddCus() {
     // Add the new customer to the customer list array
     customers.push(newCustomer);
 
-    // Display the added customer in the console (or you can display it elsewhere in your UI)
+    // Save the customers array to localStorage
+    localStorage.setItem('customers', JSON.stringify(customers));
+
+    // Display the added customer in the console
     console.log("Customer added:", newCustomer);
     console.log("Current customer list:", customers);
 
     // Clear the form after adding the customer
     clearForm();
-
     alert("Customer added successfully!");
 }
 
@@ -53,15 +56,10 @@ function clearForm() {
     paymentRadios.forEach(radio => radio.checked = false);
 }
 
-
 let isUpdating = false;
 let currentItemId = null;
 
-// Initialize an empty array to store menu items
-let menuItems = [];
-
-
-
+// Function to add menu items
 function ItemsAdd() {
     const formContainer = document.createElement('div');
     formContainer.classList.add('form-overlay');
@@ -94,7 +92,7 @@ function ItemsAdd() {
         event.preventDefault(); 
 
         const itemName = document.getElementById('itemName').value;
-        const itemPrice = document.getElementById('itemPrice').value;
+        const itemPrice = parseFloat(document.getElementById('itemPrice').value);
         const itemImage = document.getElementById('itemImage').value;
 
         if (isUpdating) {
@@ -121,6 +119,9 @@ function ItemsAdd() {
             };
 
             menuItems.push(newItem);
+
+            // Save the menuItems array to localStorage
+            localStorage.setItem('menuItems', JSON.stringify(menuItems));
 
             // Add new item to the DOM
             const newItemHTML = `
@@ -179,18 +180,7 @@ function editItem(itemId) {
     }
 }
 
-
-// Function to close the form and overlay
-function closeForm() {
-    const formOverlay = document.querySelector('.form-overlay');
-    if (formOverlay) {
-        document.body.removeChild(formOverlay);
-    }
-    isUpdating = false;
-    currentItemId = null;
-}
-
-// Function to view the menu items (Optional: You can use this for displaying in another part of the app)
+// Function to view the menu items
 function viewMenuItems() {
     console.log("Current menu items:", menuItems);
     let menuList = 'Menu:\n';
@@ -215,7 +205,7 @@ function addOrder() {
     }
 
     // Find the menu item based on the item code
-    const menuItem = menuItems.find(item => item.code === itemCode);
+    const menuItem = menuItems.find(item => item.id === parseInt(itemCode)); // Use item.id for matching
     if (!menuItem) {
         alert('Invalid item code.');
         return;
@@ -230,9 +220,47 @@ function addOrder() {
         Customer Name: ${customerName}
         Item Ordered: ${itemName}
         Quantity: ${itemQuantity}
-        Total Price: $${totalPrice.toFixed(2)}
+        Total Price: Rs.${totalPrice.toFixed(2)}
     `;
     alert(orderSummary);
 
     // Here you can add code to send the order to your backend server if needed.
 }
+
+// Function to load customers from localStorage
+function loadCustomers() {
+    const storedCustomers = JSON.parse(localStorage.getItem('customers')) || [];
+    customers.push(...storedCustomers); // Add stored customers to the array
+}
+
+// Function to load menu items from localStorage
+function loadMenuItems() {
+    const menuItemsTableBody = document.getElementById('menuItemsTableBody');
+
+    // Check if the table body exists
+    if (!menuItemsTableBody) {
+        console.error("Table body element with ID 'menuItemsTableBody' does not exist.");
+        return;
+    }
+
+    // Retrieve menu items from localStorage
+    const storedMenuItems = JSON.parse(localStorage.getItem('menuItems')) || [];
+    storedMenuItems.forEach(item => {
+        // Recreate menu items in the table
+        const row = `
+            <tr>
+                <td>${item.code || 'N/A'}</td>
+                <td>${item.name}</td>
+                <td>Rs.${item.price.toFixed(2)}</td>
+                <td><button class="btn btn-primary" onclick="addItemToOrder('${item.code || item.id}', '${item.name}', ${item.price})">Add to Order</button></td>
+            </tr>
+        `;
+        menuItemsTableBody.insertAdjacentHTML('beforeend', row);
+    });
+}
+
+// Load data when the page is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    loadCustomers();
+    loadMenuItems();
+});
