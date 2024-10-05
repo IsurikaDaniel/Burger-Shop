@@ -73,6 +73,7 @@
 }
   .btn {
     position: relative;
+    justify-items: center;
     align-items: center;
     margin-top: 20px;
     font-size: 17px;
@@ -90,12 +91,12 @@
    }
    
    .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: rgb(85, 86, 87);
+    box-shadow: 0 10px 20px rgb(80, 77, 77);
    }
    
    .btn:active {
-    transform: translateY(-1px);
+    transform: rgb(80, 77, 77);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
    }
    

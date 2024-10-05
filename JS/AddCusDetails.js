@@ -1,10 +1,8 @@
-// Initialize arrays to store customers, orders, and menu items
 const customers = [];
 const orders = [];
 const menuItems = [];
 
 function AddCus() {
-    // Get the values from the form inputs
     const customerId = document.getElementById("customerId").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
@@ -13,13 +11,11 @@ function AddCus() {
     const email = document.getElementById("email").value;
     const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
 
-    // Validate the required fields
     if (!customerId || !firstName || !lastName || !phoneNumber || !address || !email || !paymentMethod) {
         alert("Please fill out all fields.");
         return;
     }
 
-    // Create a new customer object
     const newCustomer = {
         customerId: customerId,
         firstName: firstName,
@@ -30,17 +26,13 @@ function AddCus() {
         paymentMethod: paymentMethod
     };
 
-    // Add the new customer to the customer list array
     customers.push(newCustomer);
 
-    // Save the customers array to localStorage
     localStorage.setItem('customers', JSON.stringify(customers));
 
-    // Display the added customer in the console
     console.log("Customer added:", newCustomer);
     console.log("Current customer list:", customers);
 
-    // Clear the form after adding the customer
     clearForm();
     alert("Customer added successfully!");
 }
@@ -59,7 +51,6 @@ function clearForm() {
 let isUpdating = false;
 let currentItemId = null;
 
-// Function to add menu items
 function ItemsAdd() {
     const formContainer = document.createElement('div');
     formContainer.classList.add('form-overlay');
@@ -87,7 +78,6 @@ function ItemsAdd() {
     formContainer.appendChild(form);
     document.body.appendChild(formContainer);
 
-    // Handle form submission
     form.onsubmit = function(event) {
         event.preventDefault(); 
 
@@ -145,7 +135,6 @@ function ItemsAdd() {
             itemsContainer.insertAdjacentHTML('beforeend', newItemHTML);
         }
 
-        // Reset form and close
         form.reset();
         closeForm();
     };
@@ -162,16 +151,14 @@ function closeForm() {
 
 function editItem(itemId) {
     isUpdating = true;
-    currentItemId = parseInt(itemId); // Ensure itemId is an integer
+    currentItemId = parseInt(itemId); 
 
     // Find the item in the array
-    const item = menuItems.find(item => item.id === currentItemId); // Match with item.id
+    const item = menuItems.find(item => item.id === currentItemId); 
 
     if (item) {
-        // Open the form with pre-filled data
         ItemsAdd();
 
-        // After form is opened, populate the fields with existing data
         document.getElementById('itemName').value = item.name;
         document.getElementById('itemPrice').value = item.price;
         document.getElementById('itemImage').value = item.image;
@@ -180,7 +167,6 @@ function editItem(itemId) {
     }
 }
 
-// Function to view the menu items
 function viewMenuItems() {
     console.log("Current menu items:", menuItems);
     let menuList = 'Menu:\n';
@@ -190,7 +176,6 @@ function viewMenuItems() {
     alert(menuList);
 }
 
-// Function to add an order
 function addOrder() {
     const customerId = document.querySelector('input[name="customerId"]').value;
     const customerName = document.querySelector('input[name="customerName"]').value;
@@ -198,23 +183,21 @@ function addOrder() {
     const itemName = document.querySelector('input[name="itemName"]').value;
     const itemQuantity = document.querySelector('input[name="itemQuantity"]').value;
 
-    // Basic validation
     if (!customerId || !customerName || !itemCode || !itemName || !itemQuantity) {
         alert('Please fill in all fields.');
         return;
     }
 
-    // Find the menu item based on the item code
-    const menuItem = menuItems.find(item => item.id === parseInt(itemCode)); // Use item.id for matching
+    const menuItem = menuItems.find(item => item.id === parseInt(itemCode)); 
     if (!menuItem) {
         alert('Invalid item code.');
         return;
     }
 
-    // Calculate total price
+    // total price
     const totalPrice = menuItem.price * itemQuantity;
 
-    // Display order summary
+    // Display order
     const orderSummary = `
         Customer ID: ${customerId}
         Customer Name: ${customerName}
@@ -224,29 +207,27 @@ function addOrder() {
     `;
     alert(orderSummary);
 
-    // Here you can add code to send the order to your backend server if needed.
 }
 
-// Function to load customers from localStorage
 function loadCustomers() {
     const storedCustomers = JSON.parse(localStorage.getItem('customers')) || [];
-    customers.push(...storedCustomers); // Add stored customers to the array
+    customers.push(...storedCustomers); 
 }
 
-// Function to load menu items from localStorage
+
 function loadMenuItems() {
     const menuItemsTableBody = document.getElementById('menuItemsTableBody');
 
-    // Check if the table body exists
+  
     if (!menuItemsTableBody) {
         console.error("Table body element with ID 'menuItemsTableBody' does not exist.");
         return;
     }
 
-    // Retrieve menu items from localStorage
+   
     const storedMenuItems = JSON.parse(localStorage.getItem('menuItems')) || [];
     storedMenuItems.forEach(item => {
-        // Recreate menu items in the table
+        // items in the table
         const row = `
             <tr>
                 <td>${item.code || 'N/A'}</td>
@@ -259,7 +240,7 @@ function loadMenuItems() {
     });
 }
 
-// Load data when the page is loaded
+
 document.addEventListener('DOMContentLoaded', () => {
     loadCustomers();
     loadMenuItems();
